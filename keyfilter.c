@@ -2,6 +2,8 @@
 Marián Šuľa
 259787
 */
+
+// kniznice potrebne pre program
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
