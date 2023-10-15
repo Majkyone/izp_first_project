@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
         i++;
     }
 
-    // argument je iba textovy subor s adresami
+    // iba textovy subor s adresami
     if (argc == 1)
     {
         printf("Enable: %s\n", fromAtoZ(arrayCleaner(characters)));
