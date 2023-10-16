@@ -35,16 +35,18 @@ int main(int argc, char *argv[])
         fprintf(stderr, "Too many arguments");
         return 1;
     }
-
+    // premenne pouzite v programe
     char fileArray[SIZE] = {0};
     char characters[SIZE] = {0};
     char *inputChar;
     int letter;
     int i = 0, j = 0;
+
     // nacitanie adries do pola, zistenie zaciatocnych pismen a zmena malych pismen na velke a naopak
     while ((letter = getchar()) != EOF)
     {
         error(letter);
+
         fileArray[i] = letter;
         fileArray[i] = upperCaseToLowerCase(fileArray[i]);
         fileArray[0] = lowerCaseToUpperCase(fileArray[0]);
@@ -54,6 +56,7 @@ int main(int argc, char *argv[])
         {
             j++;
             i++;
+
             fileArray[i] = getchar();
             fileArray[i] = lowerCaseToUpperCase(fileArray[i]);
             characters[j] = fileArray[i];
@@ -67,29 +70,31 @@ int main(int argc, char *argv[])
     {
         fprintf(stdout, "Enable: %s\n", fromAtoZ(arrayCleaner(characters)));
     }
-    char choices[SIZE] = {0};
+
     // argumenty su pismena zadane uzivatelom a textovy subor
     if (argc == 2)
     {
-
-        inputChar = fixInput(argv[1]);
-
+        // premenne pre zistovanie nasledujuceho pismena a slova
+        char choices[SIZE] = {0};
         int i = 0, j = 0, k = 0, l = 0;
         int size = arraySize(fileArray);
         char word[SIZE] = {0};
+
+        inputChar = fixInput(argv[1]);
 
         // zistenie nasledujuceho pismena a slova
         while (fileArray[i] != '\0')
         {
             while (((fileArray[i] == inputChar[k]) && (fileArray[i] != '\n')))
             {
-
                 k++;
                 i++;
+
                 if (k == arraySize(inputChar))
                 {
                     choices[j] = fileArray[i];
                     j++;
+
                     while ((fileArray[i] != '\n') && i <= size)
                     {
                         word[l] = fileArray[i];
@@ -102,16 +107,19 @@ int main(int argc, char *argv[])
             k = 0;
             i++;
         }
+
         // Slovo sa nenachadza v databaze
         if (arraySize(choices) == 0)
         {
             fprintf(stdout, "Not Found\n");
         }
+
         // program nasiel hladane slovo
         if (arraySize(choices) == 1)
         {
             fprintf(stdout, "Found: %s%s\n", lowerCaseToUpperCaseArray(inputChar), lowerCaseToUpperCaseArray(word));
         }
+
         // program potrebuje dalsiu specifikaciu pre hladane slovo
         if (arraySize(choices) > 1)
         {
@@ -122,6 +130,7 @@ int main(int argc, char *argv[])
 
     return 0;
 }
+
 // zistenie velkosti pola
 int arraySize(char array[])
 {
@@ -138,6 +147,7 @@ int arraySize(char array[])
 
     return size;
 }
+
 // odstrani redundantne data
 char *arrayCleaner(char array[])
 {
@@ -157,8 +167,10 @@ char *arrayCleaner(char array[])
             }
         }
     }
+    
     return array;
 }
+
 // zmena malych pismen na velke
 char lowerCaseToUpperCase(char letter)
 {
@@ -166,8 +178,10 @@ char lowerCaseToUpperCase(char letter)
     {
         letter += ('A' - 'a');
     }
+
     return letter;
 }
+
 // zmena velkych pismen na male
 char upperCaseToLowerCase(char letter)
 {
@@ -175,8 +189,10 @@ char upperCaseToLowerCase(char letter)
     {
         letter += ('a' - 'A');
     }
+
     return letter;
 }
+
 // zmena malych pismen na velke v celom poly
 char *lowerCaseToUpperCaseArray(char array[])
 {
@@ -184,18 +200,23 @@ char *lowerCaseToUpperCaseArray(char array[])
     {
         array[i] = lowerCaseToUpperCase(array[i]);
     }
+
     return array;
 }
+
 // zmena inputu ak pouzivatel zadal zle male a velke pismena
 char *fixInput(char array[])
 {
     array[0] = lowerCaseToUpperCase(array[0]);
+
     for (int i = 1; i < arraySize(array); i++)
     {
         array[i] = upperCaseToLowerCase(array[i]);
     }
+
     return array;
 }
+
 // chybova hlaska
 int error(char letter)
 {
