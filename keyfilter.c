@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
     // iba textovy subor s adresami
     if (argc == 1)
     {
-        printf("Enable: %s\n", fromAtoZ(arrayCleaner(characters)));
+        fprintf(stdout, "Enable: %s\n", fromAtoZ(arrayCleaner(characters)));
     }
     char choices[SIZE] = {0};
     // argumenty su pismena zadane uzivatelom a textovy subor
@@ -105,18 +105,18 @@ int main(int argc, char *argv[])
         // Slovo sa nenachadza v databaze
         if (arraySize(choices) == 0)
         {
-            printf("Not Found\n");
+            fprintf(stdout, "Not Found\n");
         }
         // program nasiel hladane slovo
         if (arraySize(choices) == 1)
         {
-            printf("Found: %s%s\n", lowerCaseToUpperCaseArray(inputChar), lowerCaseToUpperCaseArray(word));
+            fprintf(stdout, "Found: %s%s\n", lowerCaseToUpperCaseArray(inputChar), lowerCaseToUpperCaseArray(word));
         }
         // program potrebuje dalsiu specifikaciu pre hladane slovo
         if (arraySize(choices) > 1)
         {
 
-            printf("Enable: %s\n", lowerCaseToUpperCaseArray(fromAtoZ(arrayCleaner(choices))));
+            fprintf(stdout, "Enable: %s\n", lowerCaseToUpperCaseArray(fromAtoZ(arrayCleaner(choices))));
         }
     }
 
