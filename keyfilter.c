@@ -12,6 +12,7 @@ Marián Šuľa
 #define LENGTH 101
 #define ROW 42
 #define SIZE ROW *LENGTH
+
 // funkcie potrebne k fungovaniu programu
 int arraySize(char array[]);
 char lowerCaseToUpperCase(char letter);
@@ -167,7 +168,7 @@ char *arrayCleaner(char array[])
             }
         }
     }
-    
+
     return array;
 }
 
