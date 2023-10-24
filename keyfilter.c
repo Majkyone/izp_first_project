@@ -21,7 +21,6 @@ char *arrayCleaner(char array[]);
 char *lowerCaseToUpperCaseArray(char array[]);
 char *fixInput(char array[]);
 char *fromAtoZ(char array[]);
-int error(char letter);
 
 int main(int argc, char *argv[])
 {
@@ -46,7 +45,6 @@ int main(int argc, char *argv[])
     // nacitanie adries do pola, zistenie zaciatocnych pismen a zmena malych pismen na velke a naopak
     while ((letter = getchar()) != EOF)
     {
-        error(letter);
 
         fileArray[i] = letter;
         fileArray[i] = upperCaseToLowerCase(fileArray[i]);
@@ -65,9 +63,8 @@ int main(int argc, char *argv[])
 
         i++;
     }
-
     // iba textovy subor s adresami
-    if (argc == 1)
+    if (argc == 1 || argv[1][0] == '\0')
     {
         fprintf(stdout, "Enable: %s\n", fromAtoZ(arrayCleaner(characters)));
     }
@@ -110,9 +107,9 @@ int main(int argc, char *argv[])
         }
 
         // Slovo sa nenachadza v databaze
-        if (arraySize(choices) == 0)
+        if (arraySize(choices) == 0 && argv[1][0] != '\0')
         {
-            fprintf(stdout, "Not Found\n");
+            fprintf(stdout, "Not found\n");
         }
 
         // program nasiel hladane slovo
@@ -135,18 +132,14 @@ int main(int argc, char *argv[])
 // zistenie velkosti pola
 int arraySize(char array[])
 {
-    int i = 0, size = 0;
+    int i = 0;
 
     while (i < (int)strlen(array))
     {
-        if (error(array[i]) == 0)
-        {
-            i++;
-            size++;
-        }
+        i++;
     }
 
-    return size;
+    return i;
 }
 
 // odstrani redundantne data
@@ -216,21 +209,6 @@ char *fixInput(char array[])
     }
 
     return array;
-}
-
-// chybova hlaska
-int error(char letter)
-{
-
-    if (!((letter >= 'A' && letter <= 'Z') || (letter >= 'a' && letter <= 'z') || (letter == '\n') || (letter == ' ') || (letter == '-')))
-    {
-        fprintf(stderr, "Wrong input\n");
-        exit(1);
-    }
-    else
-    {
-        return 0;
-    }
 }
 
 // vypise pole od A po Z

@@ -1,5 +1,4 @@
 Prague
-Brno
 Ostrava
 Plzen
 Liberec
@@ -43,3 +42,5 @@ Chrudim
 Litvinov
 Havirov
 Druzstevna pri Hornade
+Brno hl.n.
+Brno hl.aut.
