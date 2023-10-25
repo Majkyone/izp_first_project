@@ -21,6 +21,7 @@ char *arrayCleaner(char array[]);
 char *lowerCaseToUpperCaseArray(char array[]);
 char *fixInput(char array[]);
 char *fromAtoZ(char array[]);
+int error(char array[]);
 
 int main(int argc, char *argv[])
 {
@@ -57,8 +58,11 @@ int main(int argc, char *argv[])
             i++;
 
             fileArray[i] = getchar();
-            fileArray[i] = lowerCaseToUpperCase(fileArray[i]);
-            characters[j] = fileArray[i];
+            if (fileArray[i] != EOF)
+            {
+                fileArray[i] = lowerCaseToUpperCase(fileArray[i]);
+                characters[j] = fileArray[i];
+            }
         }
 
         i++;
@@ -80,6 +84,8 @@ int main(int argc, char *argv[])
 
         inputChar = fixInput(argv[1]);
 
+        //zistim ci je vstup od pouzivatela spravny
+        error(inputChar);
         // zistenie nasledujuceho pismena a slova
         while (fileArray[i] != '\0')
         {
@@ -229,4 +235,23 @@ char *fromAtoZ(char array[])
     }
 
     return array;
+}
+
+// chybova hlaska
+int error(char array[])
+{
+    int return_Value = 0;
+    for (int i = 0; i < arraySize(array); i++)
+    {
+        if (!((array[i] >= 'A' && array[i] <= 'Z') || (array[i] >= 'a' && array[i] <= 'z') || (array[i] == '\n') || (array[i] == ' ') || (array[i] == '-') || (array[i] == '\0') || (array[i] == '.')))
+        {
+            fprintf(stderr, "Wrong input\n");
+            exit(1);
+        }
+        else
+        {
+            return_Value = 0;
+        }
+    }
+    return return_Value;
 }
