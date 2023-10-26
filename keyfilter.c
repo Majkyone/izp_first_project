@@ -11,7 +11,7 @@ Marián Šuľa
 // velkost podporovaneho pola
 #define LENGTH 101
 #define ROW 42
-#define SIZE ROW *LENGTH
+#define SIZE ROW * LENGTH
 
 // funkcie potrebne k fungovaniu programu
 int arraySize(char array[]);
@@ -46,7 +46,10 @@ int main(int argc, char *argv[])
     // nacitanie adries do pola, zistenie zaciatocnych pismen a zmena malych pismen na velke a naopak
     while ((letter = getchar()) != EOF)
     {
-
+        if(i > SIZE){
+            fprintf(stderr, "Too many adresses");
+            exit(1);
+        }
         fileArray[i] = letter;
         fileArray[i] = upperCaseToLowerCase(fileArray[i]);
         fileArray[0] = lowerCaseToUpperCase(fileArray[0]);
