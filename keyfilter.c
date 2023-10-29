@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
     // nacitanie adries do pola, zistenie zaciatocnych pismen a zmena malych pismen na velke a naopak
     while ((letter = getchar()) != EOF)
     {
-        if(i > SIZE){
+        if(i >= SIZE){
             fprintf(stderr, "Too many adresses");
             exit(1);
         }
